@@ -42,4 +42,4 @@ A API retornou o status **200 OK**, conforme esperado.
 
 ## Evidências
 Execução da requisição no Postman, incluindo validação do status da resposta e teste automatizado via scrits.
-![CT007_GET_User_By_Id](../evidence/CT007_Get_User_By_Id.png).
+![CT007_GET_User_By_Id](../evidence/CT007_GET_User_By_Id.png)

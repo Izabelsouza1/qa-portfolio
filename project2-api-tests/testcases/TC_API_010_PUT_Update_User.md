@@ -55,3 +55,4 @@ Execução da requisição PUT e GET no Postman, incluindo validação do status
 ![CT010_PUT_Update_User](../evidence/CT010_PUT_Update_User.png)
 ![CT010_PUT_Update_User](../evidence/CT010_GET_Update_User.png)
 ![CT010_PUT_Update_User](../evidence/CT010_Update_User_Tests.png)
+![CT010_PUT_Update_User](../evidence/CT010_GET_Update_User_Validation.png)
