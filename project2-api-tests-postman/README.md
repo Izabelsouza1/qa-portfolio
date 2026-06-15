@@ -33,7 +33,7 @@ Este projeto simula o trabalho de um QA em um ambiente real, documentando :
 
 ## Estrutura do projeto
 
-Project2-api-tests/
+Project2-api-tests-postman/
 ├── bugs/
 ├── evidence/
 ├── testcases/
