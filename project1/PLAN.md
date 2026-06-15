@@ -6,7 +6,7 @@
 **Browser:** Chrome ( Versão 141.0.7390.65 ), Windows 11
 
 
-## Escopo:    
+## Âmbito:    
 Os testes contemplam os seguintes módulos do site *Saucedemo*:
 
 - **Login:** Autenticação de usuários válidos e bloqueados, validação de campos obrigatórios e mensagens de erro.

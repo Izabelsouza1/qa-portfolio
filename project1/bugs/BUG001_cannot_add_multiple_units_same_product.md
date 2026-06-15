@@ -26,12 +26,12 @@ Ao selecionar um produto e adicioná-lo ao carrinho, o sistema não permite adic
 
 ---
 
-## Resultado esperado
+## Resultado Esperado
 O sistema deveria deixar o usuário adicionar mais de uma unidade do mesmo produto ao carrinho de compras.
 
 ---
 
-## Resultado obtido
+## Resultado Obtido
 Quando adicionado um produto ao carrinho o botão `add to cart` é substituido por `remove` e é adicionado um item ao carrinho. Após isso, o usuário não consegue alterar a quantidade do produto selecionado, limitando-o a comprar apenas um item por compra. 
 
 ---
