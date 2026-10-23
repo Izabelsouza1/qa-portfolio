@@ -3,15 +3,15 @@
 **Objetivo:** Esse plano tem como objetivo testar o fluxo básico de compra do site *SauceDemo*, desde o login até a finalização do pedido. O foco é aplicar, na prática, o conceito de testes manuais, documentação e rastreabilidade, simulando o trabalho de um QA(Quality Assurance) iniciante em um cenário real.
 
 **URL:** https://www.saucedemo.com/  
-**Browser:** Chrome ( Versão 141.0.7390.65 ), Windows 11
+**Navegador:** Chrome ( Versão 141.0.7390.65 ), Windows 11
 
 
 ## Âmbito:    
-Os testes contemplam os seguintes módulos do site *Saucedemo*:
+Os testes contemplam os seguintes módulos do site *SauceDemo*:
 
 - **Login:** Autenticação de usuários válidos e bloqueados, validação de campos obrigatórios e mensagens de erro.
 - **Carrinho de compras:** Adição e remoção de produtos.
-- **Checkoot:** Preenchimento de dados de envio, validação de campos obrigatórios e finalização de compras.
+- **Checkout:** Preenchimento de dados de envio, validação de campos obrigatórios e finalização de compras.
 - **Mensagens de validação:** Conferência das mensagens exibidas em casos de sucesso ou erro.
 
 ## Fora do Escopo
@@ -28,26 +28,25 @@ Também estão fora do escopo:
 
 **Critérios de entrada:** Site disponível e acessível; 
 credenciais válidas: `standard_user` / `secret_sauce`.  
-**Critérios de saída:** Todos os casos de teste críticos executados e documentados; bugs reportados.
+**Critérios de saída:** Os 10 casos de teste foram executados e os respetivos resultados estão documentados nos ficheiros individuais, com o estado PASS ou FAIL. Os defeitos identificados, quando aplicável, estão registados na pasta `bugs/`.
 
 ---
-## Casos de Testes Planejados ##
+## Casos de Testes Executados ##
 | Código | Descrição Resumida | Prioridade |
 |:-------|:-------------------|:-----------|
-| CT-001 | Login com credênciais válidas | Alta |
-| CT-002 | Login com senha incorreta | Alta |
-| CT-003 | Login com campos vazios | Média |
-| CT-004 | Login com usuário bloqueado | Média |
-| CT-005 | Login sem senha | Média |
-| CT-006 | Login com usuário inexistente | Alta |
-| CT-007 | Adicionar Produto ao carrinho | Alta |
-| CT-008 | Remover produto do carrinho | Média |
-| CT-009 | Finalizar compra com dados completos | Alta |
-| CT-010 | Validação de campos obrigatorios no checkout | Média |
+| CT001 | Login com credênciais válidas | Alta |
+| CT002 | Login com senha incorreta | Alta |
+| CT003 | Login com campos vazios | Média |
+| CT004 | Login com usuário bloqueado | Média |
+| CT005 | Login sem senha | Média |
+| CT006 | Login com usuário inexistente | Alta |
+| CT007 | Adicionar Produto ao carrinho | Alta |
+| CT008 | Remover produto do carrinho | Média |
+| CT009 | Finalizar compra com dados completos | Alta |
+| CT010 | Validação de campos obrigatorios no checkout | Média |
 
 
-Cada caso de teste será documentado individualmente na pasta:
-`/project1/testcases/`
+Cada caso de teste está documentado individualmente na pasta `testcases/`.
 
 ---
 
@@ -68,15 +67,16 @@ Cada caso de teste será documentado individualmente na pasta:
 ---
 
 ## Entregáveis
-1. Ficheiros de casos em `project1/testcases/` (MDs).  
-2. Bugs documentados em `project1/bugs/` (MDs).  
-3. Evidências (screenshots) em `project1/evidence/`.  
-4. README com instruções para recriar o ambiente.
+
+1. Ficheiros dos casos de teste em `testcases/` (Markdown).
+2. Defeitos documentados em `bugs/` (Markdown), quando aplicável.
+3. Evidências (capturas de ecrã) em `evidence/`.
+4. README com a apresentação do projeto.
 5. Este plano de teste (`PLAN.md`).
 
 ---
 
 ## Observações para execução
-- Os testes serão executados manualmente, registrando o **resultado obtido**  e o **status (PASS/FAIL)** diretamente nos arquivos de cada caso de teste.
+- Os testes serão executados manualmente, registando o **resultado obtido**  e o **status (PASS/FAIL)** diretamente nos arquivos de cada caso de teste.
 <!--O objetivo é desenvolver prática em documnetação e execução de testes manuais, criando uma base sólida para oportunidades de estágio ou vaga junior na área de QA. 
 - Usa nomes de ficheiros claros para screenshots: ` ex: CT001_login_valid.png`, `BUG-001.png`.-->

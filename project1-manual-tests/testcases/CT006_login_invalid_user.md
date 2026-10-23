@@ -1,4 +1,4 @@
-# CT005 - Login com usuário inexistente
+# CT006 - Login com usuário inexistente
 
 ---
 

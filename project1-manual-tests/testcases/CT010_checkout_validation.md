@@ -2,7 +2,7 @@
 
 ---
 
-**Módulo:** Carrinho de  compras  
+**Módulo:** Checkout
 **Prioridade:** Média
 **Pré-condição:** Usuário logado com credenciais válidas e pelo menos um item adicionado ao carrinho. 
 **Versão do sistema:** 1.0     
