@@ -1,11 +1,11 @@
-# TC_API_004 - POST-Login User (generate token)
+# TC_API_004 - POST - Login User (Generate Token)
 
 ---
 
 **Module:** Authentication
 **Method:** POST
 **Endpoint:** /login
-**Priority:** high
+**Priority:** High
 **Environment:** Serverest API(https://serverest.dev)
 **Date:** 14/01/2026 
 **Responsible:** Izabel Souza
@@ -22,7 +22,7 @@ Verificar se a API permite autenticar um usuário cadastrado e retorna um token 
 2. Informar no corpo da requisição um email e senha válidos.
 3. Enviar a requisição.
 4. Verificar o código de status retornado.
-4. Validar a presença do token na resposta.
+5. Validar a presença do token na resposta.
 
 ---
 
@@ -32,7 +32,7 @@ A API deve retornar o status code **200 OK** e fornecer um token de autenticaç�
 ---
 
 ## Resultado obtido
-A API retornou o status **200 OK** e forneceu um token de autenticação conforme esperaado.
+A API retornou o status **200 OK** e forneceu um token de autenticação conforme esperado.
 
 ---
 

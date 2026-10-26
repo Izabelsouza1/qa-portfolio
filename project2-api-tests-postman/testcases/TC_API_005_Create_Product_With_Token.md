@@ -1,11 +1,11 @@
-# TC_API_005 - POST-Create prduct with authentication
+# TC_API_005 - POST - Create Product With Authentication
 
 ---
 
 **Module:** Product
 **Method:** POST
 **Endpoint:** /Produtos
-**Priority:** high
+**Priority:** High
 **Environment:** Serverest API(https://serverest.dev)
 **Date:** 14/01/2026 
 **Responsible:** Izabel Souza

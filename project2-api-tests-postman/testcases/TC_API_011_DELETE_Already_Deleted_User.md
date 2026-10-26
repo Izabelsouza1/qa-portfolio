@@ -1,4 +1,4 @@
-# TC_API_011 - DELETE Already Deleted User 
+# TC_API_011 - DELETE - Already Deleted User 
 
 ---
 
@@ -12,21 +12,21 @@
 
 ---
 
-## Pre-condition
+## Pré condições
 Usuário existente previamente criado e depois excluído.
 
 ---
 
 ## Objetivo
-Verificar o comportamento da API ao tentar exluir um usuario previamente deletado do sistema.
+Verificar o comportamento da API ao tentar excluir um usuário que já foi excluído do sistema.
 
 ---
 
 ## Passos para execução
 1. Configurar uma requisição DELETE para o endpoint `/usuarios/{{userId}}`.
 2. Enviar a requisição e confirmar mensagem de sucesso.
-3. Enviar novamente a mesma requisição DELETE pa o mesmo UserId.
-4. Verificar mensagem de erro.
+3. Enviar novamente a mesma requisição DELETE para o mesmo UserId.
+4. Verificar mensagem retornada pela API.
 
 ---
 
@@ -36,7 +36,7 @@ A API deve informar mensagem de que "nenhum registro foi excluído".
 ---
 
 ## Resultado obtido
-A API retornou o status **200 OK** e mensagem de confirmação: `Nenhum registro excluído`.
+A API retornou o status code 200 OK e apresentou a mensagem de confirmação: Nenhum registo excluído.
 
 ---
 

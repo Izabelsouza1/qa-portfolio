@@ -1,4 +1,4 @@
-# TC_API_010 - PUT Update User
+# TC_API_010 - PUT - Update User
 
 ---
 
@@ -25,7 +25,7 @@ Verificar se a API permite atualização de um usuário já existente.
 ---
 
 ## Passos para execução
-1. Configurar uma requisição **POST-Create User** para o endpoint `/usuarios`salvando o UserId na environment.
+1.Configurar uma requisição POST para criar um usuário e guardar o respetivo ID na variável de ambiente userId.
 2. Confirmar que o `userId` foi salvo corretamente na environment.
 3. Configurar uma requisição PUT para o endpoint `/usuarios/{{userId}}`.
 4. No body da requisição informar as alterações a serem feitas.
@@ -41,7 +41,7 @@ A API deve retornar o status code **200 OK** com a mensagem:**Registro alterado 
 ---
 
 ## Resultado obtido
-A API retornou o status **200 OK** Seguido de mensagem de confirmação e o GET  confirmou que os dados do usuário foram atualizados corretamente.
+A API retornou o status code 200 OK, apresentou a mensagem de confirmação e a requisição GET confirmou que os dados do usuário foram atualizados corretamente.
 
 ---
 

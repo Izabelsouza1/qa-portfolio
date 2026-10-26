@@ -1,4 +1,4 @@
-# TC_API_003 - POST-Create User with duplicated email
+# TC_API_003 - POST-Create User with Duplicated Email
 
 ---
 
@@ -13,7 +13,7 @@
 ---
 
 ## Objetivo
-Verificar se a API permite criar um novo usuário com email já cadastrado.
+Verificar se a API impede a criação de um novo usuário com email já cadastrado.
 
 ---
 
@@ -22,7 +22,7 @@ Verificar se a API permite criar um novo usuário com email já cadastrado.
 2. Informar no corpo da requisição um email já existente.
 3. Enviar a requisição.
 4. Verificar o código de status retornado.
-4. Analizar a a mensagem de erro apresentada.
+4. Analisar a mensagem de erro apresentada.
 
 ---
 

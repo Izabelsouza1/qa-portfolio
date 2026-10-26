@@ -5,7 +5,7 @@
 **Module:** Product
 **Method:** POST
 **Endpoint:** /Produtos
-**Priority:** high
+**Priority:** High
 **Environment:** Serverest API
 **Date:** 14/01/2026 
 **Responsible:** Izabel Souza

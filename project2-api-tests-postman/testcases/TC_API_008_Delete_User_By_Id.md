@@ -18,7 +18,7 @@ Verificar se a API permite deletar um usuário já existente utiliznado seu Id.
 ---
 
 ## Pré condição
-Usuário existente com Id salvo na váriavel de ambiente.
+Usuário existente, com o ID guardado numa variável de ambiente (userId) no Postman.
 
 ---
 
@@ -35,7 +35,7 @@ A API deve retornar o status code **200 OK** e confirmar a exclusão do usuário
 ---
 
 ## Resultado obtido
-A API retornou o status **200 OK** e confirmou queo usuário foi exluido com sucesso.
+A API retornou o status code 200 OK e confirmou que o usuário foi excluído com sucesso.
 
 ---
 
@@ -45,5 +45,5 @@ A API retornou o status **200 OK** e confirmou queo usuário foi exluido com suc
 ---
 
 ## Evidências
-Execução da requisição DELETE no Postman, incluindo validação do status code, mensgem de resposta e testes automatizados por scripts.
+Execução da requisição DELETE no Postman, incluindo validação do status code, mensagem de resposta e testes automatizados por scripts.
 ![CT008_Delete_User_By_Id](../evidence/CT008_Delete_User_By_Id.png)

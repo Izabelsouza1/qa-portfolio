@@ -1,9 +1,9 @@
-# TC_API_001 - GET-list of users
+# TC_API_001 - GET - List Usuers
 
 ---
 
 **Module:** Users
-**Method:** Get
+**Method:** GET
 **Endpoint:** /usuarios
 **Priority:** High
 **Environment:** Serverest API (https://serverest.dev)
@@ -21,7 +21,7 @@ Verificar se a API retorna com sucesso a lista de usuários cadastrados.
 1. Configurar uma requisição GET para o endpoint `/usuarios`.
 2. Enviar a requisição.
 3. Verificar o código de status retornado.
-4. Analizar o corpo da resposta em formato JSON.
+4. Analisar o corpo da resposta em formato JSON.
 
 ---
 

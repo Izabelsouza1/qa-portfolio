@@ -1,5 +1,4 @@
-# TC_API_009 - GET Deleted User By Id
-
+# TC_API_009 - GET - Deleted User By ID
 ---
 
 **Module:** Users
@@ -25,19 +24,19 @@ Verificar se a API não retorna dados ao tentar consultar um usuário previament
 ---
 
 ## Passos para execução
-1. Configurar uma requisição Get para o endpoint `/usuarios/{{userId}}`.
+1. Configurar uma requisição GET para o endpoint `/usuarios/{{userId}}`.
 2. Enviar a requisição.
-3. Verificar o código de status e mensagem retornada.
+3. Verificar o código de status e a mensagem retornada.
 
 ---
 
 ## Resultado esperado
-A API deve retornar o status code **400 Bad Request** e mensagem de `Usuário não encotrado`.
+A API deve retornar o status code **400 Bad Request** e mensagem de `Usuário não encontrado`.
 
 ---
 
 ## Resultado obtido
-A API retornou o status **400 Bad Request** e confirmou que o usuário não foi encotrado.
+A API retornou o status **400 Bad Request** e confirmou que o usuário não foi encontrado.
 
 ---
 

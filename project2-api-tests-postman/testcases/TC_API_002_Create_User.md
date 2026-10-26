@@ -1,4 +1,4 @@
-# TC_API_002 - POST-Create User
+# TC_API_002 - POST - Create User
 
 ---
 
@@ -22,7 +22,7 @@ Verificar se a API permite criar um novo usuário com dados válidos.
 2. Informar no corpo da requisição dados válidos de um novo usuário.
 3. Enviar a requisição.
 4. Verificar o código de status retornado.
-4. Analizar a resposta da API.
+5. Analisar a resposta da API.
 
 ---
 
