@@ -1,0 +1,595 @@
+{
+  "info": {
+    "_postman_id": "a40582aa-1053-425a-8936-36b61d05b8f3",
+    "name": "Project 2 - API Testing | ServeRest",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "29279177"
+  },
+  "item": [
+    {
+      "name": "01 - Setup",
+      "item": [
+        {
+          "name": "Create User",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const responseData = pm.response.json();\r\n\r\npm.environment.set(\"userId\", responseData._id);\r\npm.environment.set(\"emailCriado\", pm.environment.get(\"email\"));\r\n\r\nconsole.log(\"ID do usuário:\", responseData._id);\r\nconsole.log(\"Email usado no cadastro:\", pm.environment.get(\"email\"));\r\nconsole.log(\"Email salvo para o PUT:\", pm.environment.get(\"emailCriado\"));"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const timestamp = Date.now();\r\nconst email = `user_${timestamp}@qa.com`;\r\nconst password = \"123456\";\r\n\r\npm.environment.set(\"email\", email);\r\npm.environment.set(\"password\", password);\r\n\r\nconsole.log(email);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nome\": \"QA User\",\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"{{password}}\",\r\n    \"administrador\": \"true\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://serverest.dev/usuarios",
+              "protocol": "https",
+              "host": [
+                "serverest",
+                "dev"
+              ],
+              "path": [
+                "usuarios"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login User",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "//Salvar token na variavel\r\nconst jsonData = pm.response.json();\r\nconst token = jsonData.authorization.replace(/^Bearer\\s+/i, \"\");\r\n\r\npm.environment.set(\"token\", token);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"{{email}}\",\r\n  \"password\": \"{{password}}\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://serverest.dev/login",
+              "protocol": "https",
+              "host": [
+                "serverest",
+                "dev"
+              ],
+              "path": [
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST Create User For Delete",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const responseData = pm.response.json();\r\n\r\npm.environment.set(\"userIdDelete\", responseData._id);\r\n\r\nconsole.log(\"ID do usuário para exclusão:\", responseData._id);\r\nconsole.log(\"Email do usuário para exclusão:\", pm.environment.get(\"emailDelete\"));"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const timestamp = Date.now();\r\nconst emailDelete = `delete_${timestamp}@qa.com`;\r\n\r\npm.environment.set(\"emailDelete\", emailDelete);\r\npm.environment.set(\"passwordDelete\", \"123456\");\r\n\r\nconsole.log(\"Email do usuário para exclusão:\", emailDelete);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nome\": \"QA User\",\r\n    \"email\": \"{{emailDelete}}\",\r\n    \"password\": \"{{password}}\",\r\n    \"administrador\": \"true\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://serverest.dev/usuarios",
+              "protocol": "https",
+              "host": [
+                "serverest",
+                "dev"
+              ],
+              "path": [
+                "usuarios"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "02 - Users",
+      "item": [
+        {
+          "name": "Create User (Duplicated email)",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "                                                "
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "\r\npm.test(\"Status code is 400\", function () {\r\n    pm.response.to.have.status(400);\r\n});\r\n\r\npm.test(\"API rejects duplicate email\", function () {\r\n    const jsonData = pm.response.json();\r\n\r\n    pm.expect(jsonData.message).to.be.a(\"string\");\r\n    pm.expect(jsonData.message.toLowerCase()).to.include(\"email\");\r\n});\r\n"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nome\": \"Izabel QA duplicate\",\r\n  \"email\": \"{{email}}\",\r\n  \"password\": \"123456\",\r\n  \"administrador\": \"true\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://serverest.dev/usuarios",
+              "protocol": "https",
+              "host": [
+                "serverest",
+                "dev"
+              ],
+              "path": [
+                "usuarios"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Users",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "//Valida o corpo da resposta.\r",
+                  "pm.test(\"Response body is not empty\", function() {\r",
+                  "    pm.expect(pm.response.json()).to.not.be.empty;\r",
+                  "});\r",
+                  "//Verifica se o primeiro usuário tem _id.\r",
+                  "pm.test(\"First user has _id\", function () {\r",
+                  "    pm.expect(pm.response.json().usuarios[0]).to.have.property(\"_id\");\r",
+                  "});\r",
+                  "//Testa se o array existe\r",
+                  "pm.test(\"Response has usuarios array\", function () {\r",
+                  "    pm.expect(pm.response.json()).to.have.property(\"usuarios\");\r",
+                  "});\r",
+                  "//Testar se ha pelo menos um usuário\r",
+                  "pm.test(\"At least one user is returned\", function () {\r",
+                  "    pm.expect(pm.response.json().usuarios.length).to.be.above(0);\r",
+                  "});\r",
+                  "//salvando o id do primeiro usuario numa variável.\r",
+                  "if (pm.response.code === 200) {\r",
+                  "    let response = pm.response.json();\r",
+                  "    let userId = response.usuarios[0]._id;\r",
+                  "\r",
+                  "    pm.environment.set(\"userId\", userId);\r",
+                  "}\r",
+                  "\r",
+                  "\r",
+                  "\r",
+                  "\r",
+                  "\r",
+                  "\r",
+                  "\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://serverest.dev/usuarios",
+              "protocol": "https",
+              "host": [
+                "serverest",
+                "dev"
+              ],
+              "path": [
+                "usuarios"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get User By ID",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "\r\npm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"User has a name and email\", function () {\r\n    const jsonData = pm.response.json();\r\n\r\n    pm.expect(jsonData.nome).to.be.a(\"string\").and.not.empty;\r\n    pm.expect(jsonData.email).to.be.a(\"string\").and.not.empty;\r\n});\r\n\r\npm.test(\"Returned userId matches requested userId\", function () {\r\n    const jsonData = pm.response.json();\r\n\r\n    pm.expect(jsonData._id).to.eql(\r\n        pm.environment.get(\"userId\")\r\n    );\r\n});\r\n\r\n"
+                ]
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://serverest.dev/usuarios/{{userId}}",
+              "protocol": "https",
+              "host": [
+                "serverest",
+                "dev"
+              ],
+              "path": [
+                "usuarios",
+                "{{userId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update User",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n//Valida msg de sucesso\r\npm.test(\"Update success message returned\", function () {\r\n    var jsonData = pm.response.json();\r\n    pm.expect(jsonData.message).to.eql(\"Registro alterado com sucesso\");\r\n});\r\n\r\n//valida que o response body não está vazio\r\npm.test(\"Response body is not empty\", function () {\r\n    pm.expect(pm.response.text()).to.not.be.empty;\r\n});\r\n\r\n\r\n\r\n\r\n"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "console.log(\"Email usado no PUT:\", pm.environment.get(\"emailCriado\"));\r\nconsole.log(\"User ID usado no PUT:\", pm.environment.get(\"userId\"));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nome\": \"Usuario Put Atualizado\",\r\n    \"email\": \"put_{{userId}}@qa.com\",\r\n    \"password\": \"123456\",\r\n    \"administrador\": \"true\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://serverest.dev/usuarios/{{userId}}",
+              "protocol": "https",
+              "host": [
+                "serverest",
+                "dev"
+              ],
+              "path": [
+                "usuarios",
+                "{{userId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete User By ID",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"User deleted successfully\", function () {\r\n    const jsonData = pm.response.json();\r\n    pm.expect(jsonData.message).to.eql(\"Registro excluído com sucesso\");\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nome\": \"Fulano da Silva\",\r\n    \"email\": \"beltraaaaaaano@qa.com.br\",\r\n    \"password\": \"teste\",\r\n    \"administrador\": \"true\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://serverest.dev/usuarios/{{userIdDelete}}",
+              "protocol": "https",
+              "host": [
+                "serverest",
+                "dev"
+              ],
+              "path": [
+                "usuarios",
+                "{{userIdDelete}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Deleted User By Id",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 400 or 404\", function () {\r\n    pm.expect([400, 404]).to.include(pm.response.code);\r\n});\r\n\r\npm.test(\"Response contains error message\", function () {\r\n    const jsonData = pm.response.json();\r\n    pm.expect(jsonData).to.have.property(\"message\");\r\n});\r\n\r\npm.test(\"API reports that user was not found\", function () {\r\n    const jsonData = pm.response.json();\r\n\r\n    pm.expect(jsonData.message).to.eql(\"Usuário não encontrado\");\r\n});\r\n"
+                ]
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://serverest.dev/usuarios/{{userIdDelete}}",
+              "protocol": "https",
+              "host": [
+                "serverest",
+                "dev"
+              ],
+              "path": [
+                "usuarios",
+                "{{userIdDelete}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Already Deleted User",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"API informs that no record was deleted\", function () {\r\n    const jsonData = pm.response.json();\r\n\r\n    pm.expect(jsonData.message).to.eql(\"Nenhum registro excluído\");\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://serverest.dev/usuarios/{{userIdDelete}}",
+              "protocol": "https",
+              "host": [
+                "serverest",
+                "dev"
+              ],
+              "path": [
+                "usuarios",
+                "{{userIdDelete}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "03 - Products",
+      "item": [
+        {
+          "name": "Create Product (with token)",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "//gerar nome de produto automatico, salva em environment\r\nconst timestamp = Date.now();\r\nconst nomeProduto = `Produto QA ${timestamp}`;\r\n\r\npm.environment.set(\"nomeProduto\", nomeProduto);\r\n\r\nconsole.log(\"Produto a ser criado:\", nomeProduto);\r\n"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nome\": \"{{nomeProduto}}\",\r\n    \"preco\": 100,\r\n    \"descricao\": \"Produto de teste automatizado\",\r\n    \"quantidade\": 10\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://serverest.dev/produtos",
+              "protocol": "https",
+              "host": [
+                "serverest",
+                "dev"
+              ],
+              "path": [
+                "produtos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Product (without token)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "\r\npm.test(\"Status code is 401\", function () {\r\n    pm.response.to.have.status(401);\r\n});\r\n\r\npm.test(\"API rejects product creation without token\", function () {\r\n    const jsonData = pm.response.json();\r\n\r\n    pm.expect(jsonData.message).to.eql(\r\n        \"Token de acesso ausente, inválido, expirado ou usuário do token não existe mais\"\r\n    );\r\n});\r\n"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nome\": \"{{nomeProduto}}\",\r\n  \"preco\": 150,\r\n  \"descricao\": \"Tentativa de criar produto sem autenticação\",\r\n  \"quantidade\": 5\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://serverest.dev/produtos",
+              "protocol": "https",
+              "host": [
+                "serverest",
+                "dev"
+              ],
+              "path": [
+                "produtos"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "04 - Cleanup",
+      "item": []
+    }
+  ]
+}
