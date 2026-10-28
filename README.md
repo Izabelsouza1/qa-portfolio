@@ -1,4 +1,4 @@
-# 👩‍💻 QA Portfolio
+#  QA Portfolio
 
 Olá! Sou **QA Júnior**, com experiência prática em **testes manuais, testes de API, documentação de testes e identificação de bugs**.
 
@@ -6,7 +6,7 @@ Tenho experiência em projetos práticos e trabalhos freelance, aplicando concei
 
 Este repositório reúne projetos práticos desenvolvidos para demonstrar meus conhecimentos em testes, qualidade de software e documentação.
 
-## 🧪 Projetos
+##  Projetos
 
 ### 1. Manual Testing — SauceDemo
 
@@ -67,10 +67,10 @@ Projeto de testes de API utilizando Postman e a API pública ServeRest.
 - Evidências de testes
 - Execução de coleções no Postman Runner
 
-## 🎯 Objetivo Profissional
+##  Objetivo Profissional
 
 Atuar como **QA Júnior**, contribuindo para a qualidade dos produtos por meio de testes, identificação de problemas, documentação e melhoria contínua.
 
 ---
 
-📌 **Portfólio em desenvolvimento contínuo.**
+ **Portfólio em desenvolvimento contínuo.**
